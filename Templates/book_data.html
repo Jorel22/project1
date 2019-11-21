@@ -1,0 +1,55 @@
+<!-- Author:Jordan Montenegro-->
+
+
+{% extends "raiz.html" %}
+
+
+
+{% block body %}
+	Welcome {{user}}
+	<a  class="navi" href="{{url_for('logout')}}" >Log Out</a>
+	<a  class="navi" href="{{url_for('login')}}" >New search</a>
+
+		<div style="background-color:lightblue;display;block;">Data from Goodreads: </div>
+	<ul style "background-color:greenlight;padding:3px;display:block;padding:3px;margin:10px">
+        
+            <li style="display:block;background-color:lightgreen;padding:5px;" > Isbn: {{ book.isbn}} </li>
+			<li style="display:block;background-color:lightgreen;padding:5px;" > Tittle: {{ book.tittle}}  </li>
+			<li style="display:block;background-color:lightgreen;padding:5px;" > Author: {{ book.author}} </li>
+			<li style="display:block;background-color:lightgreen;padding:5px;" > Work ratings count: {{work_ratings_count}}  </li>
+			<li style="display:block;background-color:lightgreen;padding:5px;" > Average rating: {{average_rating}} </li>
+			
+    </ul>
+		Add a calification:
+		<form action="{{ url_for('add_review',book_isbn=book.isbn) }}" method="post" ;>
+		<div class="form-group">
+    <label for="exampleFormControlSelect2">Choose the grade(5 is good)</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" name="grade" >
+      <option selected>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Write a comment</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name ="comment_text" rows="3"></textarea>
+  </div>
+  
+		<button type="submit" class="btn btn-primary">Register</button>
+</form>
+		
+		{% for comm in comments %}
+			<div class="alert alert-primary" role="alert">
+			
+			<ul>
+				<li>User: {{comm.user}}   Grade: {{comm.grade}}. </li>
+				<li>Comment: {{comm.comment}} </li>
+			</ul
+			
+			</div>
+		
+		{% endfor %}
+		
+{% endblock %}

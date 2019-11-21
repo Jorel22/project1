@@ -1,0 +1,25 @@
+<!-- Author:Jordan Montenegro-->
+
+
+{% extends "raiz.html" %}
+
+{% block heading %}
+    Searching system
+{% endblock %}
+
+{% block body %}
+	Welcome {{user}}
+	<a  class="navi" href="{{url_for('logout')}}"> Log Out </a>	
+	
+	<ul>
+        {% for book in books %}
+            <li>
+                <a href="{{ url_for('book',book_isbn=book.isbn)}}" >
+                    {{ book.isbn}}, {{ book.tittle}} , {{ book.author}}, {{book.year}}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}

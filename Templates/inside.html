@@ -1,0 +1,26 @@
+<!-- Author:Jordan Montenegro-->
+
+
+{% extends "raiz.html" %}
+
+{% block heading %}
+    Searching system
+{% endblock %}
+
+{% block body %}
+	Welcome {{user}}
+	<a  class="navi" href="{{url_for('logout')}}">Log Out</a>	
+	
+<form action="{{ url_for('search_book') }}" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Search:</label>
+    <input type="text" class="form-control" nane="exampleInputEmail1" name="book_name" aria-describedby="emailHelp" placeholder="Enter isbn, book or author">
+    
+  </div>
+  
+
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+{% endblock %}
